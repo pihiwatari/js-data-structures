@@ -21,27 +21,31 @@ class MyArray {
     return lastItem;
   }
   shift() {
-    const firstItem = this.data[0];
-
-    this.shiftIndex(0);
-
-    return firstItem;
+    return this.delete(0);
   }
-  unshift() {}
-  delete(index) {
-    const item = this.data[index];
-    shiftIndex(index);
+  unshift(item) {
+    this.length++;
+    let i = this.length - 1;
+    for (i; i > 0; i--) {
+      this.data[i] = this.data[i - 1];
+    }
+    this.data[0] = item;
     return item;
   }
+
+  delete(index) {
+    const item = this.data[index];
+    this.shiftIndex(index);
+    return item;
+  }
+
   shiftIndex(index) {
-    for (let i = index; i < this.length - 1, i++; ) {
+    for (let i = index; i < this.length - 1; i++) {
       this.data[i] = this.data[i + 1];
     }
     delete this.data[this.length - 1];
     this.length--;
   }
 }
-
-console.log('array');
 
 export default MyArray;
